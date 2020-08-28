@@ -55,10 +55,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let cameraTransform = centerPoint.transform
         let cameraLocation = SCNVector3(x: cameraTransform.m41,y: cameraTransform.m42,z: cameraTransform.m43)
-        let cameraOrientation = SCNVector3(x: cameraTransform.m31,y: cameraTransform.m32,z: cameraTransform.m33)
+        let cameraOrientation = SCNVector3(x: -cameraTransform.m31,y: -cameraTransform.m32,z: -cameraTransform.m33)
         
 //      x1 + x2, y1 + y2, z1 + z2
         let cameraPosition = SCNVector3Make(cameraLocation.x + cameraOrientation.x,cameraLocation.y + cameraOrientation.y,cameraLocation.z + cameraOrientation.z)
+        
+        let ball = SCNSphere(radius: 0.15)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "basketballSkin.png")
+        ball.materials = [material]
+        
+//        In order to set object position in AR, that object needs to be a node
+        let ballNode = SCNNode(geometry: ball)
+        ballNode.position = cameraPosition
+        
+//        Adding node to scene
+        sceneView.scene.rootNode.addChildNode(ballNode)
         
         
     }
