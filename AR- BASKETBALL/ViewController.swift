@@ -8,18 +8,66 @@
 
 import UIKit
 import RealityKit
+import ARKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet var arView: ARView!
+class ViewController: UIViewController, ARSCNViewDelegate {
+
+    @IBOutlet var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
+//        Set view's delegate
+        sceneView.delegate = self
         
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
+//        Show statistics(fps, etc.)
+        sceneView.showsStatistics = true
+        
+//        Create a new scene
+        let scene = SCNScene()
+        
+//        Set scene to View
+        sceneView.scene = scene
+        
+        addBackboard()
+        registerGestureRecognizer()
     }
+    
+    func registerGestureRecognizer(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        sceneView.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
+//        sceneView to be accessed
+//        access point of view of the sceneView...center point
+        guard let sceneView = gestureRecognizer.view as? ARSCNView else{
+            return
+        }
+        
+        guard let centerPoint = sceneView.pointOfView else{
+            return
+        }
+        
+//        pointOfView allows access to transform matrix
+//        TM contains the orientation/location of the camera
+//        We need orientation/location to determine camera position. At this point is where we want the ball to be placed
+    }
+    
+    
+    func addBackboard(){
+        guard let backboardScene = SCNScene(named: "art.scnassets/hoop.scn") else{
+            return
+        }
+        
+        guard let backboardNode = backboardScene.rootNode.childNode(withName: "backboard", recursively: false) else{
+            return
+        }
+        
+        backboardNode.position = SCNVector3(x: 0,y: 0.5,z: -3)
+        
+        sceneView.scene.rootNode.addChildNode(backboardNode)
 }
+    
+}
+

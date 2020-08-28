@@ -13,6 +13,7 @@
 		4D838A7924F5AA650006A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D838A7724F5AA650006A305 /* Main.storyboard */; };
 		4D838A7B24F5AA690006A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D838A7A24F5AA690006A305 /* Assets.xcassets */; };
 		4D838A7E24F5AA690006A305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D838A7C24F5AA690006A305 /* LaunchScreen.storyboard */; };
+		4D838A8624F5B0930006A305 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D838A8524F5B0930006A305 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4D838A7A24F5AA690006A305 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D838A7D24F5AA690006A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D838A7F24F5AA690006A305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D838A8524F5B0930006A305 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				4D838A7524F5AA650006A305 /* Experience.rcproject */,
 				4D838A7724F5AA650006A305 /* Main.storyboard */,
 				4D838A7A24F5AA690006A305 /* Assets.xcassets */,
+				4D838A8524F5B0930006A305 /* art.scnassets */,
 				4D838A7C24F5AA690006A305 /* LaunchScreen.storyboard */,
 				4D838A7F24F5AA690006A305 /* Info.plist */,
 			);
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D838A7E24F5AA690006A305 /* LaunchScreen.storyboard in Resources */,
+				4D838A8624F5B0930006A305 /* art.scnassets in Resources */,
 				4D838A7B24F5AA690006A305 /* Assets.xcassets in Resources */,
 				4D838A7924F5AA650006A305 /* Main.storyboard in Resources */,
 			);
@@ -285,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DSQR5BP855;
 				INFOPLIST_FILE = "AR- BASKETBALL/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DSQR5BP855;
 				INFOPLIST_FILE = "AR- BASKETBALL/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
