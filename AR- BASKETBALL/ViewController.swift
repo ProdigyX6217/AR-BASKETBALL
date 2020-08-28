@@ -52,6 +52,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //        pointOfView allows access to transform matrix
 //        TM contains the orientation/location of the camera
 //        We need orientation/location to determine camera position. At this point is where we want the ball to be placed
+        
+        let cameraTransform = centerPoint.transform
+        let cameraLocation = SCNVector3(x: cameraTransform.m41,y: cameraTransform.m42,z: cameraTransform.m43)
+        let cameraOrientation = SCNVector3(x: cameraTransform.m31,y: cameraTransform.m32,z: cameraTransform.m33)
+        
+//      x1 + x2, y1 + y2, z1 + z2
+        let cameraPosition = SCNVector3Make(cameraLocation.x + cameraOrientation.x,cameraLocation.y + cameraOrientation.y,cameraLocation.z + cameraOrientation.z)
+        
+        
     }
     
     
