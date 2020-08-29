@@ -52,7 +52,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //        pointOfView allows access to transform matrix
 //        TM contains the orientation/location of the camera
 //        We need orientation/location to determine camera position. At this point is where we want the ball to be placed
-        
         let cameraTransform = centerPoint.transform
         let cameraLocation = SCNVector3(x: cameraTransform.m41,y: cameraTransform.m42,z: cameraTransform.m43)
         let cameraOrientation = SCNVector3(x: -cameraTransform.m31,y: -cameraTransform.m32,z: -cameraTransform.m33)
@@ -69,9 +68,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let ballNode = SCNNode(geometry: ball)
         ballNode.position = cameraPosition
         
+        let physicsShape = SCNPhysicsShape(node: ballNode, options: nil)
+        let physicsBody = SCNPhysicsBody(type: .dynamic, shape: physicsShape)
+        
+        ballNode.physicsBody = physicsBody
+        
+        let forceVector:Float = 6
+        ballNode.physicsBody?.applyForce(SCNVector3(x: cameraOrientation.x * forceVector,y: cameraOrientation.y * forceVector ,z: cameraOrientation.z * forceVector), asImpulse: true)
+        
+        
 //        Adding node to scene
         sceneView.scene.rootNode.addChildNode(ballNode)
-        
         
     }
     
