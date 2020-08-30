@@ -106,6 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.scene.rootNode.addChildNode(backboardNode)
         horizontalAction(node: backboardNode)
+//        roundAction(node: backboardNode)
 }
     
     
@@ -115,7 +116,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let actionSequence = SCNAction.sequence([leftAction, rightAction])
         
+//        node.runAction(actionSequence)
         node.runAction(SCNAction.repeat(actionSequence, count: 4))
+    }
+    
+    
+    func roundAction(node: SCNNode){
+        let upLeft = SCNAction.move(by: SCNVector3(x: 1,y: 1, z:0), duration: 2)
+        let downRight = SCNAction.move(by: SCNVector3(x: 1,y: -1, z:0), duration: 2)
+        let downLeft = SCNAction.move(by: SCNVector3(x: -1,y: -1, z:0), duration: 2)
+        let upRight = SCNAction.move(by: SCNVector3(x: -1,y: 1, z:0), duration: 2)
+
+        let actionSequence = SCNAction.sequence([upLeft, downRight, downLeft, upRight])
+        
+//        node.runAction(actionSequence)
+        node.runAction(SCNAction.repeat(actionSequence, count: 2))
     }
     
 }
