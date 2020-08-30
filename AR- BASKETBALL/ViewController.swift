@@ -11,8 +11,10 @@ import RealityKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
+//    IBOutlet - Reference to Storyboard Element
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var addHoopButton: UIButton!
     
     var currentNode: SCNNode!
     
@@ -22,8 +24,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //        Set view's delegate
         sceneView.delegate = self
         
-//        Show statistics(fps, etc.)
-        sceneView.showsStatistics = true
+//        Show game statistics(fps, etc.)
+//        sceneView.showsStatistics = true
         
 //        Create a new scene
         let scene = SCNScene()
@@ -31,7 +33,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //        Set scene to View
         sceneView.scene = scene
         
-        addBackboard()
         registerGestureRecognizer()
     }
     
@@ -172,6 +173,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     
     
+//    IBAction - Action to be performed upon click
+    @IBAction func addHoop(_ sender: Any) {
+        addBackboard()
+        addHoopButton.isHidden = true
+    }
     
     @IBAction func startRoundAction(_ sender: Any) {
         roundAction(node: currentNode)
