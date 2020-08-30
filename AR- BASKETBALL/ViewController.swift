@@ -105,7 +105,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         backboardNode.physicsBody = physicsBody
         
         sceneView.scene.rootNode.addChildNode(backboardNode)
+        horizontalAction(node: backboardNode)
 }
+    
+    
+    func horizontalAction(node:SCNNode){
+        let leftAction = SCNAction.move(by: SCNVector3(x: -1,y: 0,z: 0), duration: 3)
+        let rightAction = SCNAction.move(by: SCNVector3(x: 1,y: 0,z: 0), duration: 3)
+        
+        let actionSequence = SCNAction.sequence([leftAction, rightAction])
+        
+        node.runAction(SCNAction.repeat(actionSequence, count: 4))
+    }
     
 }
 
