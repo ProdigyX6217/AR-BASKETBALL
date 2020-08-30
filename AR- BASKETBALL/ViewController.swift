@@ -14,6 +14,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var currentNode: SCNNode!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,8 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         backboardNode.physicsBody = physicsBody
         
         sceneView.scene.rootNode.addChildNode(backboardNode)
-        horizontalAction(node: backboardNode)
-//        roundAction(node: backboardNode)
+        currentNode = backboardNode
 }
     
     
@@ -132,6 +133,60 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //        node.runAction(actionSequence)
         node.runAction(SCNAction.repeat(actionSequence, count: 2))
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        Create A Session Configuration
+        let configuration = ARWorldTrackingConfiguration()
+        
+//        Run the View's Session
+        sceneView.session.run(configuration)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            
+//        Pause the View's Session
+            sceneView.session.pause()
+        }
+    
+    override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            
+//        Release Any Cached Data that isn't in use.
+        }
+    
+    
+    func sessionWasInterrupted(_ session: ARSession, didFailWithError error:Error) {
+//    Present an error message to the user
+    }
+    
+    func sessionWasInterrupted(_ session: ARSession) {
+//        Inform user that the session has been interrupted, for ex. by presenting an overlay
+    }
+    
+    func sessionInterruptionEnded(_ session: ARSession) {
+    //    Reset tracking and/or remove existing anchors if consistent Tracking is required
+        }
+    
+    
+    
+    @IBAction func startRoundAction(_ sender: Any) {
+        roundAction(node: currentNode)
+    }
+    
+    @IBAction func stopAllActions(_ sender: Any) {
+        currentNode.removeAllActions()
+    }
+    
+    @IBAction func startHorizontalAction(_ sender: Any) {
+        horizontalAction(node: currentNode)
+    }
+    
+    
+    
     
 }
 

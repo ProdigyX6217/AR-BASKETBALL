@@ -18,11 +18,60 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIg-iO-Tax">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-ag-7oO">
+                                <rect key="frame" x="90" y="857" width="234" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8w-f0-Zt5">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8WM-Rj-rw5"/>
+                                            <constraint firstAttribute="width" constant="70" id="pI6-Tm-hmN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="&lt;-&gt;">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startHorizontalAction:" destination="BfS-Pi-VZg" eventType="touchUpInside" id="c4C-G1-1DZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlp-91-5f3">
+                                        <rect key="frame" x="82" y="0.0" width="70" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="e2O-4Y-OBW"/>
+                                            <constraint firstAttribute="width" constant="70" id="xac-nc-zjE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="STOP">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopAllActions:" destination="BfS-Pi-VZg" eventType="touchUpInside" id="E5I-uA-O8C"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-Xu-xmE">
+                                        <rect key="frame" x="164" y="0.0" width="70" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="IDd-Vh-rZQ"/>
+                                            <constraint firstAttribute="height" constant="30" id="awU-8d-uXa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="&lt;-&gt;">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startRoundAction:" destination="BfS-Pi-VZg" eventType="touchUpInside" id="NJG-Hu-1kp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="jIg-iO-Tax" secondAttribute="bottom" id="AFC-5d-Fhm"/>
+                            <constraint firstItem="qPN-ag-7oO" firstAttribute="centerX" secondItem="uek-nz-60b" secondAttribute="centerX" id="BUY-we-SO4"/>
                             <constraint firstItem="jIg-iO-Tax" firstAttribute="top" secondItem="uek-nz-60b" secondAttribute="top" id="IVv-yj-HKc"/>
+                            <constraint firstItem="qPN-ag-7oO" firstAttribute="bottom" secondItem="Gwd-lY-P3d" secondAttribute="bottom" constant="25" id="M7Q-d9-Gmg"/>
                             <constraint firstItem="jIg-iO-Tax" firstAttribute="leading" secondItem="Gwd-lY-P3d" secondAttribute="leading" id="Tg8-0a-z3B"/>
                             <constraint firstItem="jIg-iO-Tax" firstAttribute="trailing" secondItem="Gwd-lY-P3d" secondAttribute="trailing" id="wI8-w1-bII"/>
                         </constraints>
