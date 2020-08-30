@@ -68,9 +68,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let ballNode = SCNNode(geometry: ball)
         ballNode.position = cameraPosition
         
+        
         let physicsShape = SCNPhysicsShape(node: ballNode, options: nil)
         let physicsBody = SCNPhysicsBody(type: .dynamic, shape: physicsShape)
         
+//        Applying Physics Body to Ball Node
         ballNode.physicsBody = physicsBody
         
         let forceVector:Float = 6
@@ -93,6 +95,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         backboardNode.position = SCNVector3(x: 0,y: 0.5,z: -3)
+        
+//          Applying Physics Body to Backboard
+//          SceneKit knows there's a hole in the hoop (.concavePolyhedron)
+        let physicsShape = SCNPhysicsShape(node: backboardNode, options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.concavePolyhedron])
+        
+        let physicsBody = SCNPhysicsBody(type: .static, shape: physicsShape)
+        
+        backboardNode.physicsBody = physicsBody
         
         sceneView.scene.rootNode.addChildNode(backboardNode)
 }
