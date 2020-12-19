@@ -9,6 +9,8 @@
 import UIKit
 import RealityKit
 import ARKit
+import SpriteKit
+import GameplayKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
@@ -17,6 +19,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var addHoopButton: UIButton!
     
     var currentNode: SCNNode!
+    //var gameScene: GameScene!
+    
+    var currentScore: Int! {
+        didSet {
+            self.scoreLabel.text = "SCORE: \(self.currentScore ?? 0)"
+        }
+    }
+    
+    var remainingTime: TimeInterval! {
+        didSet {
+            self.timeLabel.text = "TIME: \(Int(self.remainingTime))"
+        }
+    }
+    
+    var gameTimer: Timer!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +55,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         
         registerGestureRecognizer()
+        
+        
+        // Load the SKScene from 'Scene.sks'
+        if let skScene = GKScene(fileNamed: "GameScene") {
+            //sceneView.presentScene(skScene)
+            if let sceneNode = skScene.rootNode as? GameScene {
+                print("Appeared \(sceneNode.name)")
+                //sceneView.present(sceneNode, with: SKTransitionDirection.left, incomingPointOfView: nil, completionHandler: nil)
+                //gameScene = sceneNode
+            }
+        }
+        
     }
+    
+    
+    
     
     func registerGestureRecognizer(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -138,7 +174,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        timeLabel.isHidden = true
+        scoreLabel.isHidden = true
 //        Create A Session Configuration
         let configuration = ARWorldTrackingConfiguration()
         
@@ -177,6 +214,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func addHoop(_ sender: Any) {
         addBackboard()
         addHoopButton.isHidden = true
+        setupGameViews()
     }
     
     @IBAction func startRoundAction(_ sender: Any) {
@@ -191,8 +229,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         horizontalAction(node: currentNode)
     }
     
+    func setupGameViews() {
+        timeLabel.isHidden = false
+        scoreLabel.isHidden = false
+        remainingTime = 60
+        currentScore = 0
+        
+        //start timer
+        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true) //start timer
+    }
     
-    
+    @objc func updateTimer() {
+        remainingTime -= 1
+    }
     
 }
 
